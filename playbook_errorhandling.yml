@@ -1,0 +1,20 @@
+---
+- name: Ansible error hendling
+  hosts: all
+  become: yes
+
+
+  tasks:
+  - name: Task n1
+    yum: name=treeeee state=latest
+    ignore_errors: yes                      # ignore errors for tast n1
+
+  - name: Task n2
+    shell: ls -a /home/
+    register: results
+
+  - debug:
+      var: results
+
+  - name: Task n3
+    shell: echo Bye

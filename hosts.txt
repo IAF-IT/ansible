@@ -1,0 +1,9 @@
+[PROD]
+ubuntu     ansible_host=3.8.114.205  ansible_user=ubuntu    
+
+[STAGING]
+asw_linux  ansible_host=3.8.39.193   ansible_user=ec2-user  
+
+[ALL_LINUX:children]
+PROD
+STAGING

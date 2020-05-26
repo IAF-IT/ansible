@@ -1,0 +1,22 @@
+---
+- name: Ansible error hendling
+  hosts: all
+  become: yes
+#  any_errors_fatal: true                    # any error leads to fatal
+
+  tasks:
+  - name: Task n1
+    yum: name=treeeee state=latest
+    ignore_errors: yes                      # ignore errors for tast n1
+
+  - name: Task n2
+    shell: echo Hello
+    register: results
+    failed_when: results.rc !=0
+#    failed_when: "'World' in results.stdout"
+
+  - debug:
+      var: results
+
+  - name: Task n3
+    shell: echo Bye
